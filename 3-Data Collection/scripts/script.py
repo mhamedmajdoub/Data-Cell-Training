@@ -2,14 +2,13 @@ import scrapy
 import requests
 from scrapy import Selector
 
-url="https://datacell.netlify.app/"
+url="https://www.deezer.com/fr/offers"
 html=requests.get(url).content
-#print(html)
+print(html)
 sel=Selector(text=html)
 #xpath='/html/head/title/text()'
-xpath='//a/@href'
+xpath='//'
 titlte1=sel.xpath(xpath).get()
-
 print(titlte1)
 
 
