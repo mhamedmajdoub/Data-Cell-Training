@@ -6,7 +6,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 import time 
 
 def get_driver() : 
-    listes_des_noms=["Mhamed majdoub","Abdelmajid Nidnasser"]
+    listes_des_noms=["Abdelmajid Nidnasser"]
     link = "https://www.linkedin.com/home"
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install())) 
     driver.get(link)
@@ -32,31 +32,42 @@ def get_driver() :
         #search=driver.find_element(By.ID , "msg-overlay-list-bubble-search__search-typeahead-input")
         #search.send_keys(nom)
         #time.sleep(2)
+        
+        people=driver.find_element(By.CLASS_NAME,"search-reusables__primary-filter")
+        people.click()
+        time.sleep(2)
 
-        chose=driver.find_element(By.XPATH,"//body/div[5]/div[3]/div[2]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]/div[1]/div[1]/div[1]/div[1]/div[1]/span[1]/span[1]/a[1]/span[1]/span[1]")
+        chose=driver.find_element(By.XPATH,"//body/div[5]/div[3]/div[2]/div[1]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/ul[1]/li[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/span[1]/span[1]/a[1]/span[1]")
         chose.click()
         time.sleep(2)
 
-        more=driver.find_element(By.CLASS_NAME,"mercado-match")
+        more=driver.find_element(By.CLASS_NAME,"artdeco-dropdown artdeco-dropdown--placement-bottom artdeco-dropdown--justification-right ember-view")
         more.click()
+        time.sleep(20)
+        try : 
+            more = driver.find_element(By.XPATH, "/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/h1[1]")
+            more.click()
+            time.sleep(2)
+        except :
+            more = driver.find_element(By.XPATH, "/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/h1[1]")
+            more.click()
+            time.sleep(2)
+        
+
+        se_connecter=driver.find_element(By.XPATH,"//body/div[5]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/main[1]/section[1]/div[2]/div[3]/div[1]/div[3]/div[1]/div[1]/ul[1]/li[4]/div[1]/span[1]")
+        se_connecter.click()
         time.sleep(2)
 
-        connecter=driver.find_element(By.XPATH,"//body/div[5]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/main[1]/section[1]/div[2]/div[3]/div[1]/div[3]/div[1]/div[1]/ul[1]/li[4]/div[1]/span[1]")
-        connecter.click()
-        time.sleep(2)
-
-
-
-        add_note=driver.find_element(By.CLASS_NAME,"artdeco-button__text")
+        add_note=driver.find_element(By.XPATH,"//body/div[@id='artdeco-modal-outlet']/div[@id='ember1795']/div[1]/div[3]/button[1]/span[1]")
         add_note.click
         time.sleep(2)
 
-        type_note=driver.find_element(By.ID,"custom-message")
+        type_note=driver.find_element(By.XPATH,"//textarea[@id='custom-message']")
         type_note.send_keys("kalam fa7ich. Cordialement!")
         type_note.send_keys(Keys.ENTER)
         time.sleep(2)
 
-        send_note=driver.find_element(By.CLASS_NAME,"artdeco-button__text")
+        send_note=driver.find_element(By.XPATH,"//body/div[@id='artdeco-modal-outlet']/div[@id='ember1795']/div[1]/div[3]/button[2]/span[1]")
         send_note.click
         time.sleep(2)
 
